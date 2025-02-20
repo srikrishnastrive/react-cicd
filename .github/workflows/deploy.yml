@@ -17,10 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - uses : Use Node.js
-        uses : actions/setup-node@v2
-        with :
-          node-version : '16'
+      - name: Setup Node.js  # ✅ Corrected: Added 'name' instead of duplicate 'uses'
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
@@ -28,16 +28,11 @@ jobs:
       - name: Build
         run: npm run build
 
-
-      - name : Vercel Action
+      - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
-        with :
-          vercel-token : ${{secrets.VERCEL_TOKEN}}
-          vercel-org-id : ${{secrets.VERCEL_ORG_ID}}
-          vercel-project-id : ${{secrets.VERCEL_PROJECT_ID}}
-          alias-domain : domain.com
-          working-directory : ./
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          alias-domain: domain.com
           vercel-args: '--prod'
-
-
-
