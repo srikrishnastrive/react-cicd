@@ -20,7 +20,7 @@ jobs:
       - name: Setup Node.js  # ✅ Corrected: Added 'name' instead of duplicate 'uses'
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
